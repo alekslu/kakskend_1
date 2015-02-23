@@ -5,17 +5,19 @@ import java.util.Scanner;
 
 public class Kakskend1 {
 	
-	// Kirjutada meetod, mis võtab ette kolm arvu (eraldi argumentidena) ja tagastab neist suurima.
+	
 
 	private static Scanner scanner = new Scanner(System.in);
 	Scanner keyboard = new Scanner(System.in);
 
+	// !!! ESIMENE OSA - PANUSTE SISESTAMINE !!!!!
 	public static void main(String[] args) {
 		new Kakskend1().run();
 	}
 
 	public void run() {
 
+		
 		int raha;
 		int panus;
 		boolean kasutajav5it;
@@ -25,6 +27,7 @@ public class Kakskend1 {
 
 		raha = 100; // alguses on 100 ühikut raha
 
+	//Panuse sisestus mängu alguses
 		while (true) {
 			System.out.println("Sul on " + raha + " eurot.");
 			do {
@@ -36,7 +39,7 @@ public class Kakskend1 {
 				if (panus < 0 || panus > raha) {
 					System.out.println("Sinu panus peab jääma vahemikku 0 ja "
 							+ raha + ".");
-				}
+				} //Kirjeldus käesoleva raha ja panuse suhted kui võidad/kaotad
 			} while (panus < 0 || panus > raha);
 			if (panus == 0) {
 				raha = raha + panus;
@@ -47,7 +50,7 @@ public class Kakskend1 {
 				raha = raha + panus;
 			} else {
 				raha = raha - panus;
-			}
+			} //Kui raha == 0; lõpetab programm töötamise 
 			System.out.println();
 			if (raha == 0) {
 				System.out.println("Sinu rahakott on tühi!");
@@ -58,7 +61,11 @@ public class Kakskend1 {
 		System.out.println();
 		System.out.println("Lahkud mängust " + raha + " euroga.");
 	}
-
+	// !!! ESIMENE OSA - PANUSTE SISESTAMINE LÕPP !!!!!
+	
+	// !!! TEINE OSA - KAARTIDE KIRJELDUS !!!!!
+	
+	//Kaartide kirjeldused (kaartid alates 10 on pildiga kaartid)
 	private boolean Blackjack() {
 
 		Scanner keyboard = new Scanner(System.in);
@@ -66,9 +73,13 @@ public class Kakskend1 {
 		int[] uusKaart = { 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6,
 				6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10,
 				10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11 };
-
+		// !!! TEINE OSA - KAARTIDE KIRJELDUS LÕPP???!!!!!
+		
+		
+		// !!! KOLMAS OSA - MÄNG ISE, KAARTID KÄES JUBA !!!!!
+		
 		shuffleArray(uusKaart);
-
+	//Esimesed kättejagatud kaartid MÄNGIJAL
 		System.out.println();
 		System.out.println("Sinu kaardid on: " + uusKaart[0] + " ja "
 				+ uusKaart[1] + ".");
@@ -76,7 +87,7 @@ public class Kakskend1 {
 		System.out.println("Sinu kogusumma on: " + mKogusumma + ".");
 		System.out.println();
 
-		// kui esimeses roundis blackjack
+		//Kirjeldus esimeses roundis võimaliku blackjacki/lõhki minemise kohta
 		if (mKogusumma == 21) {
 			System.out.println("BLACKJACK, sinu võit!");
 			return true;
@@ -85,7 +96,7 @@ public class Kakskend1 {
 			System.out.println("Lõhki, kaotasid!");
 			return false;
 		}
-		// Dealer cards
+		//Esimese roundi kaartid DIILERIL ja kirjeldus selle kohta, kas on lõhki või blackjack (
 		System.out.println("Diileril on: " + uusKaart[2]
 				+ " ja varjatud kaardid");
 		int dKogusumma = uusKaart[2] + uusKaart[3];
@@ -107,7 +118,11 @@ public class Kakskend1 {
 		System.out.println("Tema kogusumma on peidetud!");
 		System.out.println();
 
-		// juurde või stopp
+		// Kui esimene round ei l6ppenud blackjacki või l6hkiminekuga, siis kas "juurde" või "l6pp".
+		// "l6pp" on siin kirjeldamata, proovisin, kuid lõi programmi sassi. Seega pärast 
+	    //  esimest roundi "l6pp" ei tööta praegu.
+	
+		
 
 		System.out.print("Tahad kaarte \"juurde\" või \"l6pp\"? ");
 		String hitStay = keyboard.next();
@@ -125,7 +140,8 @@ public class Kakskend1 {
 							.println("Sinu kogusumma on: " + mKogusumma + ".");
 					System.out.println();
 					cc++;
-
+// Kirjeldus: kas p2rast juurde v6tmist l2ksid lõhki või said BLACKJACKI. 
+					// Kui mitte kumbki, siis saad võtta juurde
 					if (mKogusumma > 21) {
 						System.out.println("Läksid lõhki, kaotasid!");
 						return false;
@@ -138,7 +154,8 @@ public class Kakskend1 {
 					hitStay = keyboard.next();
 					System.out.println();
 
-					
+					// Kuna "juurde" on juba eelnevalt kirjeldatud, siis seekord kirjeldasin "l6pp"
+					// Seekord t55tavad nii l6pp kui juurde, viga ei oska 5elda.
 					if (hitStay.equalsIgnoreCase("l6pp")) {
 
 						while (mKogusumma < 21
@@ -182,6 +199,11 @@ public class Kakskend1 {
 
 						}
 
+						// !!! KOLMAS OSA - MÄNG ISE, KAARTID KÄES JUBA !!!!! 						
+						// Kui koodi vaadata, siis see osa tuleb täpselt nii jube pikk
+						// Samas, see osa mis nüüd siia alla jääb, oleks ka imelik, kui välja jääb.
+						// Võib-olla siis meetod kuni kommentaarini // Lõplik kokkuvõte?!
+						
 						keyboard.close();
 						System.out.println("Diileri kord");
 						System.out.println("Tema peidetud kaart on: "
@@ -212,7 +234,7 @@ public class Kakskend1 {
 							}
 						}
 
-						// Lõplik kokkuvõte
+						// Lõplik kokkuvõte - see ka eraldi meetodina!?
 						System.out.println();
 						System.out.println("Diileri kogusumma on: "
 								+ dKogusumma);
@@ -236,7 +258,7 @@ public class Kakskend1 {
 		}
 		return false;
 	}
-
+// Pluss see eraldi meetodiks.
 	static void shuffleArray(int[] deckCards) {
 
 		Random rnd = new Random();
